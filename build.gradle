@@ -1,0 +1,27 @@
+//옛날에는 이 코드조차도 모두 손수 직접 코딩해야 했으나, 요즘은 스프링 자체에서 제공하는 스타터 페이지에서
+// 손쉽게 프로젝트 생성이 가능해졌기 때문에 굉장히 편리함. 스프링부트가 제공되며 개발자 친화적으로 변하는 추세임.
+plugins {
+	id 'org.springframework.boot' version '2.3.10.RELEASE'//스프링부트 버젼
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'//선택 언어
+}
+
+group = 'hello'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'//자바 11버전
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'//선택한 dependency
+	implementation 'org.springframework.boot:spring-boot-starter-web'//선택한 dependency
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+}
+
+test {
+	useJUnitPlatform()
+}
