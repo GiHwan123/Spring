@@ -13,13 +13,19 @@ sourceCompatibility = '11'//자바 11버전
 repositories {
 	mavenCentral()
 }
-
+configurations {
+	developmentOnly
+	runtimeClasspath {
+		extendsFrom developmentOnly
+	}
+}
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'//선택한 dependency
 	implementation 'org.springframework.boot:spring-boot-starter-web'//선택한 dependency
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
+	developmentOnly("org.springframework.boot:spring-boot-devtools")
 }
 
 test {
