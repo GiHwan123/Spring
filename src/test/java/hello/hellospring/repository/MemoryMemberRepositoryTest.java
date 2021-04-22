@@ -4,9 +4,6 @@ import hello.hellospring.domain.Member;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
-
-import javax.swing.text.html.Option;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -61,6 +58,13 @@ class MemoryMemberRepositoryTest {
         List<Member> result = repository.findAll();
 
         assertThat(result.size()).isEqualTo(2);
+
+    }
+
+    @Test
+    public void join(){
+        Member member1 = new Member();
+        member1.setName("spring");
 
     }
 }
