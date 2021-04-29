@@ -1,34 +1,31 @@
 package hello.hellospring.service;
 
 import hello.hellospring.domain.Member;
+import hello.hellospring.repository.MemberRepository;
 import hello.hellospring.repository.MemoryMemberRepository;
-import org.assertj.core.api.Assert;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Commit;
+import org.springframework.transaction.annotation.Transactional;
 
-import static org.junit.jupiter.api.Assertions.*;
-//순수한 단위테스트(스프링컨테이너 없이 순수한 자바코드로만 테스트진행. 이것이 좋은 테스트일 확률이 높음)
-class MemberServiceTest {
+import static org.junit.jupiter.api.Assertions.assertThrows;
+//통합테스트
+@SpringBootTest
+@Transactional
+class MemberServiceIntegrationTest {
 
-    MemberService memberService;
-    MemoryMemberRepository memberRepository;
+    @Autowired MemberService memberService;
+    @Autowired MemberRepository memberRepository;
 
-    @BeforeEach
-    public void beforeEach(){
-        memberRepository = new MemoryMemberRepository();
-        memberService = new MemberService(memberRepository);
-    }
-    @AfterEach
-    public void afterEacd(){//테스트 진행이 완료될 때 마다 repository에 저장(할당)된 데이터들을 모두 삭제
-        memberRepository.clearStore();
-    }
     @Test//테스트는 구현한 기능을 테스트하기 위한 것 일 뿐이므로 한글로 메소드명을 정의해도 상관없음.
     void 회원가입() {
         //given
         Member member = new Member();
-        member.setName("spring");
+        member.setName("spring1");
 
 
         //when
@@ -65,11 +62,4 @@ class MemberServiceTest {
 
     }
 
-    @Test
-    void findMembers() {
-    }
-
-    @Test
-    void findOne() {
-    }
 }
